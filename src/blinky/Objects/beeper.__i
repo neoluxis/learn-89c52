@@ -1,0 +1,1 @@
+"..\..\peripherials\Src\beeper.c" OPTIMIZE (8,SPEED) INCDIR(.\Includes;..\..\peripherials;..\..\peripherials\Inc) DEBUG OBJECTEXTEND PRINT(.\Listings\beeper.lst) TABS (2) OBJECT(.\Objects\beeper.obj)

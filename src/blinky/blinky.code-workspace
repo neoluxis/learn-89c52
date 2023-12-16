@@ -1,0 +1,32 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "../../peripherials"
+    }
+  ],
+  "settings": {
+    "files.associations": {
+      "*.c": "c",
+      "led.h": "c",
+      "main.h": "c",
+      "delay.h": "c",
+      "reg52.h": "c",
+      "regx52.h": "c",
+      "REGX52.H": "cpp",
+      "keys.h": "c",
+      "seg.h": "c"
+    },
+    "C_Cpp.default.includePath": [
+      "d:\\Keil_v5\\C51\\INC",
+      "d:\\Keil_v5\\C51\\INC\\Atmel",
+      "e:\\proj\\52xjq\\all52\\src\\blinky\\Includes",
+      "e:\\proj\\52xjq\\all52\\peripherials",
+      "e:\\proj\\52xjq\\all52\\peripherials\\Inc",
+      "e:\\proj\\52xjq\\all52\\src\\blinky\\Sources",
+      "e:\\proj\\52xjq\\all52\\peripherials\\Src"
+    ]
+  }
+}

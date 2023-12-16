@@ -1,0 +1,170 @@
+C51 COMPILER V9.60.7.0   SEG                                                               12/07/2023 13:00:27 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE SEG
+OBJECT MODULE PLACED IN .\Objects\seg.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE ..\..\peripherials\Src\seg.c OPTIMIZE(8,SPEED) INCDIR(.\Includes;..\..\p
+                    -eripherials;..\..\peripherials\Inc) DEBUG OBJECTEXTEND PRINT(.\Listings\seg.lst) TABS(2) OBJECT(.\Objects\seg.obj)
+
+line level    source
+
+   1          #include "seg.h"
+   2          #include "delay.h"
+   3          
+   4          u8 code seg_pos[] = {
+   5              0x7f, // 0
+   6              0xbf, // 1
+   7              0xdf, // 2
+   8              0xef, // 3
+   9              0xf7, // 4
+  10              0xfb, // 5
+  11              0xfd, // 6
+  12              0xfe  // 7
+  13          };
+  14          
+  15          u8 code seg_num[] = {
+  16              0x3f, // 0
+  17              0x06, // 1
+  18              0x5b, // 2
+  19              0x4f, // 3
+  20              0x66, // 4
+  21              0x6d, // 5
+  22              0x7d, // 6
+  23              0x07, // 7
+  24              0x7f, // 8
+  25              0x6f, // 9
+  26              0x77, // A
+  27              0x7c, // b
+  28              0x39, // C
+  29              0x5e, // d
+  30              0x79, // E
+  31              0x71  // F
+  32          };
+  33          
+  34          u8 code seg_neg_sign = 0x40;
+  35          u8 code seg_dot_sign = 0x80;
+  36          
+  37          u8 seg_flag = 0;
+  38          
+  39          // TODO: Rewrite with timer
+  40          void seg_init(void)
+  41          {
+  42   1          wela = 0;
+  43   1          dula = 0;
+  44   1          SEG = 0xff;
+  45   1      }
+  46          
+  47          // TODO: Need implementation
+  48          void seg_clear(void) {}
+  49          
+  50          void seg_start(void)
+  51          {
+  52   1          seg_flag = 1;
+  53   1      }
+  54          
+C51 COMPILER V9.60.7.0   SEG                                                               12/07/2023 13:00:27 PAGE 2   
+
+  55          void seg_stop(void)
+  56          {
+  57   1          seg_flag = 0;
+  58   1      }
+  59          
+  60          void seg_display(u8 pos, u8 num)
+  61          {
+  62   1          SEG = seg_pos[pos];
+  63   1          wela = 1;
+  64   1          wela = 0;
+  65   1      
+  66   1          SEG = seg_num[num];
+  67   1          dula = 1;
+  68   1          dula = 0;
+  69   1          delay_centus(1);
+  70   1      }
+  71          
+  72          void seg_customize(u8 pos, u8 cust)
+  73          {
+  74   1          SEG = seg_pos[pos];
+  75   1          wela = 1;
+  76   1          wela = 0;
+  77   1      
+  78   1          SEG = cust;
+  79   1          dula = 1;
+  80   1          dula = 0;
+  81   1          delay_centus(1);
+  82   1      }
+  83          
+  84          void seg_show(u16 num, u8 full)
+  85          {
+  86   1          u8 i;
+  87   1          u8 buf[8];
+  88   1          for (i = 0; full ? i < 8 : num > 0; i++)
+  89   1          {
+  90   2              buf[i] = num % 10;
+  91   2              num /= 10;
+  92   2          }
+  93   1          for (i--; i < 8; i--)
+  94   1          {
+  95   2              seg_display(i, buf[i]);
+  96   2          }
+  97   1      }
+  98          
+  99          void seg_signed_show(i16 num)
+ 100          {
+ 101   1          if (num >= 0)
+ 102   1          {
+ 103   2              seg_show(num, 0);
+ 104   2          }
+ 105   1          else
+ 106   1          {
+ 107   2              u8 i;
+ 108   2              u8 buf[8];
+ 109   2              num = -num;
+ 110   2              for (i = 0; num > 0; i++)
+ 111   2              {
+ 112   3                  buf[i] = num % 10;
+ 113   3                  num /= 10;
+ 114   3              }
+ 115   2              seg_customize(i, seg_neg_sign);
+ 116   2              for (i--; i < 8; i--)
+C51 COMPILER V9.60.7.0   SEG                                                               12/07/2023 13:00:27 PAGE 3   
+
+ 117   2              {
+ 118   3                  seg_display(i, buf[i]);
+ 119   3              }
+ 120   2          }
+ 121   1      }
+ 122          
+ 123          void seg_hex_show(u16 num, u8 full)
+ 124          {
+ 125   1          u8 i;
+ 126   1          u8 buf[8];
+ 127   1          for (i = 0; full ? i < 8 : num > 0; i++)
+ 128   1          {
+ 129   2              buf[i] = num % 0x10;
+ 130   2              num /= 0x10;
+ 131   2          }
+ 132   1          for (i--; i < 8; i--)
+ 133   1          {
+ 134   2              seg_display(i, buf[i]);
+ 135   2          }
+ 136   1      }
+ 137          
+ 138          void seg_digit_show(double num)
+ 139          {
+ 140   1          // TODO: Implement this function
+ 141   1      }
+*** WARNING C280 IN LINE 138 OF ..\..\peripherials\Src\seg.c: 'num': unreferenced local variable
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    398    ----
+   CONSTANT SIZE    =     26    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1      34
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,36 @@
+C51 COMPILER V9.60.7.0   TIM                                                               10/30/2023 17:57:53 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE TIM
+OBJECT MODULE PLACED IN .\Objects\tim.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE ..\..\peripherials\Src\tim.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\Includes;
+                    -..\..\peripherials;..\..\peripherials\Inc) DEBUG OBJECTEXTEND PRINT(.\Listings\tim.lst) TABS(2) OBJECT(.\Objects\tim.obj
+                    -)
+
+line level    source
+
+   1          #include "tim.h"
+   2          
+   3          void tim_init(TimerInitStruct*timx){
+   4   1        
+   5   1      }
+*** WARNING C280 IN LINE 3 OF ..\..\peripherials\Src\tim.c: 'timx': unreferenced local variable
+   6          
+   7          void tim_start(TimerInitStruct *timx){
+   8   1        
+   9   1      }
+*** WARNING C280 IN LINE 7 OF ..\..\peripherials\Src\tim.c: 'timx': unreferenced local variable
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     14    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  0 ERROR(S)

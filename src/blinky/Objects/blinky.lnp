@@ -1,0 +1,8 @@
+".\Objects\main.obj",
+".\Objects\led.obj",
+".\Objects\seg.obj",
+".\Objects\delay.obj",
+".\Objects\beeper.obj",
+".\Objects\keys.obj" 
+TO ".\Objects\blinky" 
+PRINT(".\Listings\blinky.m51") RAMSIZE(256) 
